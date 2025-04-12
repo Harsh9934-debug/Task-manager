@@ -10,8 +10,12 @@
   <body>
     <div class="main w-full min-h-screen text-white bg-zinc-900 p-10">
       <a class="text-blue-500 inline-block mb-10" href="/">Go back to Home</a>
-      <h1 class="text-3xl tracking-tighter"><%= filename %></h1>
-      <p class="text-xl mt-2"><%= filedata %></p>
+      <% if (filename && filedata) { %>
+        <h1 class="text-3xl tracking-tighter"><%= filename %></h1>
+        <p class="text-xl mt-2"><%= filedata %></p>
+      <% } else { %>
+        <p class="text-xl text-red-500">Error: File content not available</p>
+      <% } %>
     </div>
   </body>
 </html>
