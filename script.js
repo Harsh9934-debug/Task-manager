@@ -97,4 +97,21 @@ app.get("/show/:filename", function (req, res) {
   });
 });
 
+app.get("/download/:filename", function (req, res) {
+const filename= req.params.filename;
+const filePath=path.join(__dirname,'file',filename);
+// Check if the file exists before attempting to download it
+if (!fs.existsSync(filePath)) {
+  return res.status(404).send('File not found');
+}
+res.download(filePath,function(err){
+  if(err){
+    console.error('Error in downloading the file',err);
+  }
+  }
+  );  
+}
+);
+
+
 app.listen(3000);

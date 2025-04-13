@@ -35,16 +35,18 @@
         <div class="task w-72 px-3 py-4 bg-zinc-600 rounded-md">
           <h1 class="text-white text-xl tracking-tighter"><%= val %></h1>
           <a class="text-blue-500 inline-block mt-3" href="/show/<%= val %>">Read more</a>
-          <a class="text-white pl-20" href="/edit/<%= val %>">Edit filename </a>
+          <a class="text-white pl-10 " href="/edit/<%= val %>">Edit filename </a>
+          <a class="text-white pl-4" method="post" href="/download/<%= val %>"><i class="ri-download-2-line"></i></a>
           <form action="/delete/<%= val %>" method="post" class="inline-block">
             <button
-              class="bg-red-600 p-2 rounded-md mt-5 hover:bg-red-700 transition-colors"
+              class=" p-2 rounded-md mt-5 hover:bg-red-700 transition-colors"
               type="submit"
               title="Delete task"
             >
               <i class="ri-delete-bin-line text-xl"></i>
             </button>
           </form>
+          
         </div>
         <% }) %> <% } else {%>
         <h3 class="p-10 text-gray-500">No task yet</h3>
