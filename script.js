@@ -3,6 +3,7 @@ const app = express();
 const path = require("path");
 const fs = require("fs");
 const { log } = require("console");
+const port = process.env.PORT || 8000;
 
 app.set("view engine", "ejs");
 app.use(express.json());
@@ -114,4 +115,4 @@ res.download(filePath,function(err){
 );
 
 
-app.listen(3000);
+app.listen(port);
