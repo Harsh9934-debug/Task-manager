@@ -5,12 +5,26 @@ const fs = require("fs");
 const { log } = require("console");
 const port = process.env.PORT || 8000;
 
+const dirPath = path.join(__dirname, "file");
+if (!fs.existsSync(dirPath)) {
+  fs.mkdirSync(dirPath);
+}
+
 app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.get("/", function (req, res) {
-  fs.readdir(`./file`, function (err, file) {
+  const dirPath = path.join(__dirname, "file");
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath); // Create the directory if it doesn't exist
+  }
+
+  fs.readdir(dirPath, function (err, file) {
+    if (err) {
+      console.error("Error reading directory:", err);
+      return res.render("index", { file: [] });
+    }
     res.render("index", { file: file });
   });
 });
